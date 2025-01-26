@@ -20,6 +20,15 @@ def employee(request):
     }
     return render(request, 'home/employee.html', context)
 
+
+def employee_int(request, id):
+    employee = Employee.objects.get(id=id)
+    context = {
+        'employee': employee,
+    }
+    return render(request, 'home/employee_detail.html', context)
+
+
 def employee_details(request):
     employees = Employee.objects.all()
     context ={
