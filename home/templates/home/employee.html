@@ -2,40 +2,87 @@
 
 {% block content %}
 <div class=" container-fluid">
-    <div class="card border-primary mb-3" style="max-width: 100vw;">
-        <div class="card-header">
-            <h3>Our All Employees</h3>
-        </div>
-        <div class="">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        {% for employee in employees %}
-                        <div class="card border-secondary mb-3">
-                         
-                            <div class="card-header">
-                                <h5>{{ employee.id }} . {{ employee.name }}</h5>
-                            </div>
-                        </div>
-                        {% empty %}
-                        <p>No employees found.</p>
-
-                        {% endfor%}
-                     
-
-                     
-                          
-                          
-                          
-                          
-                        </tbody>
-                      </table>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="card border-primary mb-3" style="max-width: 100vw;">
+    <div class="card-header">
+      <h3>Our All Employees</h3>
     </div>
+    <div class="">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            {% for employee in employees %}
+            <div class="card border-secondary mb-3">
+
+              <div class="card-header">
+                <h5>
+                  {{ employee.id }} . <a href="{% url 'home:employee_int' employee.id %}"
+                    style="text-decoration: none;"> {{ employee.name }} </a>
+                  <button type="button" class="btn btn-success me-1" data-bs-toggle="modal"
+                    data-bs-target="#employeeModal{{ employee.id }}">
+                    <i class="fa-solid fa-circle-info fa-lg"></i>
+                  </button>
+                  <!-- Trigger Button for Edit -->
+                <a href="{% url 'home:edit_employee' employee.id %}" class="btn btn-warning me-1">
+                  <i class="fa-solid fa-edit fa-lg"></i>
+                </a>
+
+                <!-- Trigger Button for Delete -->
+                <!-- Trigger Button for Delete -->
+                <a href="{% url 'home:delete_employee' employee.id %}" class="btn btn-warning me-1">
+                  <i class="fa-solid fa-trash fa-lg"></i>
+                </a>
+              </div>
+                </h5>
+                
+            </div>
+
+            <!-- -- Modal View Component --  -->
+
+            <div class="modal fade" id="employeeModal{{ employee.id }}" tabindex="-1"
+              aria-labelledby="myModalLabel{{ employee.id }}" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title">
+                      Name : {{ employee.name }}
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                  </div>
+                  <div class="modal-body">
+                    <ul class="list-unstyled">
+                      <li> Department: <strong> {{ employee.department }} </strong> </li>
+                      <li> Position: <strong> {{ employee.position }} </strong> </li>
+                      <li> Floor: <strong> {{ employee.floor }} </strong> </li>
+                      <li> Salary: <strong> {{ employee.salary }} </strong> </li>
+
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% empty %}
+            <p>No employees found.</p>
+
+            {% endfor%}
+
+
+
+
+
+
+
+            </tbody>
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

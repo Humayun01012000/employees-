@@ -24,9 +24,9 @@ def employee(request):
 def employee_int(request, id):
     employee = Employee.objects.get(id=id)
     context = {
-        'employee': employee,
+        'employees': employee,
     }
-    return render(request, 'home/employee_detail.html', context)
+    return render(request, 'home/employee_int.html', context)
 
 
 def employee_details(request):
@@ -54,5 +54,25 @@ def add_employee(request):
             new_employee.save()
             return redirect(reverse('home:employee'))
     context = {'form': form}
-    return render(request, 'home/add_employee.html', context)
+    return render(request, 'home/add_employee.html', context)  
+
+
+def edit_employee(request, id):
+    employee = Employee.objects.get(id=id)
+    form = EmployeeForm(instance=employee)
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST, instance=employee)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home:employee'))
+    context = {'form': form, 'employee': employee}
+    return render(request, 'home/edit_employee.html', context) 
+
+
+def delete_employee(request, id):
+    employee = Employee.objects.get(id=id)
+    if request.method == "POST":
+       employee.delete()
+       return redirect(reverse('home:employee'))
+    return render(request, 'home/delete_employee.html',)
     
