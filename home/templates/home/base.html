@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,47 +11,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js">
 
+
+    <style>
+        html, body {
+          height: 100%;
+          font-family: 'Times New Roman', Times, serif;
+        }
+        body {
+          display: flex;
+          flex-direction: column;
+        }
+        .content {
+          flex: 1; /* Pushes footer to the bottom */
+        }
+        footer {
+          background-color: #f8f9fa;
+          text-align: center;
+          padding: 10px 0;
+        }
+    </style>    
 </head>
+
 <body>
 
     <!-- -- Navbar -- -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home:home' %}">Employee Management</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:employee' %}">Employees</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:details' %}">Employee Details</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home:add_employee' %}">Add Employee</a>
-                    </li>
-                </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home:home' %}">Employee Management</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home:employee' %}">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home:details' %}">
+                                <i class="fa-solid fa-circle-info fa-lg"> </i>  Employees Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home:add_employee' %}">Add Employee</a>
+                        </li>
+                    </ul>
+                    <div class="ms-lg-auto">
+                        <a href="{% url 'user:login' %}" class="ms-lg-5">
+                            <button type="button" class="btn btn-primary"> Log in </button>
+                        </a>
+        
+                        <a href="{% url 'user:register' %}">
+                            <button type="button" class="btn btn-secondary"> Sign Up </button>
+                        </a>
+
+                        <a href="{% url 'user:logout_view' %}" class="btn btn-outline-danger">Logout</a>
+
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     
+    </header>
 
-    {% block content %}
-
-    {% endblock %}
+    <main class="content">
+        {% block content %}
+        {% endblock %}
+      </main>
 
     <!-- Footer -->
-     <footer class=" bg-dark text-white py-5">
+    <footer class=" bg-dark text-white py-5">
         <div class="container text-center">
-            <small>Copyright &copy; Humayun Sheikh <script>document.write(new Date().getFullYear()) </script> </small>
+            <small>Copyright &copy; Humayun Sheikh
+                <script>document.write(new Date().getFullYear()) </script>
+            </small>
         </div>
     </footer>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

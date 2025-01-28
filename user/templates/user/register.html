@@ -1,0 +1,45 @@
+{% extends 'home/base_no_navbar.html' %}
+
+
+<!-- {% block navbar %} -->
+<!-- Leave the navbar block empty to remove it -->
+<!-- {% endblock %} -->
+
+{% block content %}
+
+<!-- <h1 class="text-body-emphasis">User Register </h1> -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>User Registration</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Render each form field with Bootstrap styles -->
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                <!-- Display errors -->
+                                {% for error in field.errors %}
+                                    <div class="text-danger small">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                    <a href="{% url 'user:login' %}" class="btn btn-outline-primary w-100 mt-2">Already have an account? Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

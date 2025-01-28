@@ -4,7 +4,10 @@
 <div class=" container-fluid">
   <div class="card border-primary mb-3" style="max-width: 100vw;">
     <div class="card-header">
-      <h3>Our All Employees</h3>
+      <h3>
+        <i class="fa-solid fa-user fa-lg"></i>
+        Our All Employees
+      </h3>
     </div>
     <div class="">
       <div class="card-body">
@@ -15,20 +18,22 @@
 
               <div class="card-header">
                 <h5>
-                  {{ employee.id }} . <a href="{% url 'home:employee_int' employee.id %}"
+                  {{ forloop.counter }} . <a href="{% url 'home:employee_int' employee.id %}"
                     style="text-decoration: none;"> {{ employee.name }} </a>
                   <button type="button" class="btn btn-success me-1" data-bs-toggle="modal"
-                    data-bs-target="#employeeModal{{ employee.id }}">
+                    data-bs-target="#employeeModal{{ employee.id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="See Employee Details">
                     <i class="fa-solid fa-circle-info fa-lg"></i>
                   </button>
                   <!-- Trigger Button for Edit -->
-                <a href="{% url 'home:edit_employee' employee.id %}" class="btn btn-warning me-1">
+                <a href="{% url 'home:edit_employee' employee.id %}" class="btn btn-warning me-1"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Employee Information">
                   <i class="fa-solid fa-edit fa-lg"></i>
                 </a>
 
                 <!-- Trigger Button for Delete -->
                 <!-- Trigger Button for Delete -->
-                <a href="{% url 'home:delete_employee' employee.id %}" class="btn btn-warning me-1">
+                <a href="{% url 'home:delete_employee' employee.id %}" class="btn btn-warning me-1"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Employee Information">
                   <i class="fa-solid fa-trash fa-lg"></i>
                 </a>
               </div>

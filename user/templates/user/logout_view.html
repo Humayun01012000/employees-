@@ -1,0 +1,20 @@
+{% extends 'home/base_no_navbar.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-danger text-white">
+                    <h4>You Have Logged Out</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p class="text-muted">You have successfully logged out of your account.</p>
+                    <a href="{% url 'user:login' %}" class="btn btn-primary mt-3">Login Again</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
