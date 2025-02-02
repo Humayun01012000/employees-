@@ -70,9 +70,13 @@
             </div>
 
             {% empty %}
-            <p>No employees found.</p>
+            <div class="alert alert-danger" role="alert">
+              <h1>
+              No Employee found on your database Please <a href="{% url 'home:add_employee' %}">add employee</a> 
 
-            {% endfor%}
+              </h1>
+            </div>
+            {% endfor %}
 
 
 
